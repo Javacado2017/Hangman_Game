@@ -1,25 +1,31 @@
-window.onload = function () {
+    // Set games won equal to 0 and display on screen
+        var gamesWon = 0; 
+        document.getElementById("gamesWon").innerHTML = gamesWon.toString();
 
+    // Set games lost equal to 0 and display on screen
+        var gamesLost = 0; 
+        document.getElementById("gamesLost").innerHTML = gamesLost.toString();
+
+function hangmanGameSetup() {
+    
     // Randomly select category and display category on screen
-        var categoryOptions = ["CategoryOne", "CategoryTwo", "CategoryThree"];
+        var categoryOptions = ["Seasons", "Months", "Days"];
         var selectCategory = categoryOptions[Math.floor(Math.random()*categoryOptions.length)];
 
         document.getElementById("myCategory").textContent = selectCategory;
 
     // Randomly select word from category split word into array
-        var Category1 = ["wordone", "wordtwo", "wordthree", "wordfour", "wordfive"];
-        var Category2 = ["wordsix", "wordseven", "wordeight", "wordnine", "wordten"];
-        var Category3 = ["wordeleven", "wordtwelve", "wordthirteen", "wordfourteen", "wordfifhteen"];
+        var Category1 = ["winter", "spring", "summer", "fall"];
+        var Category2 = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+        var Category3 = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
-        if (categoryOptions = "CategoryOne") {
+        if (selectCategory === "Seasons") {
             var wordOptions = Category1;
-        };
-
-        if (categoryOptions = "CategoryTwo") {
+        }
+        else if (selectCategory === "Months") {
             var wordOptions = Category2;
-        };
-
-        if (categoryOptions = "CategoryThree") {
+        }
+        else if (selectCategory === "Days") {
             var wordOptions = Category3;
         };
 
@@ -28,21 +34,7 @@ window.onload = function () {
 
     // Set lives equal to 10 and display on screen
         var lives = 10; 
-        var newDiv = document.createElement("div");
-        newDiv.textContent = lives;
-        document.getElementById("myLives").appendChild(newDiv);
-
-    // Set games won equal to 0 and display on screen
-        var gamesWon = 0; 
-        var newDiv = document.createElement("div");
-        newDiv.textContent = gamesWon;
-        document.getElementById("gamesWon").appendChild(newDiv);
-
-    // Set games lost equal to 0 and display on screen
-        var gamesLost = 0; 
-        var newDiv = document.createElement("div");
-        newDiv.textContent = gamesLost;
-        document.getElementById("gamesLost").appendChild(newDiv);
+        document.getElementById("myLives").innerHTML = lives.toString();
 
     // Create alphabet array to compare guesses to and display on screen
         var alphabetArray = [];
@@ -64,14 +56,15 @@ window.onload = function () {
         var newDiv = document.createElement("div");
         newDiv.textContent = blankSpaces;
         document.getElementById("blankSpaces").innerHTML = blankSpaces.toString();
-        console.log(blankSpaces);
+
 
     // Function to run each time player enters a key  
         var lettersGuessed = [];
 
-        document.onload = function (event) {
+        document.onkeyup = function (event) {
             var userGuess = event.key.toLowerCase();
 
+  
         // Alert user if they entered same letter twice or if the guess is not a letter
             var alreadyGuessed = lettersGuessed.indexOf(userGuess);
             
@@ -105,24 +98,12 @@ window.onload = function () {
                 lives--;
                 document.getElementById("myLives").innerHTML = lives.toString();
             }
-        
-        // If player lives goes to zero, player loses game and game restarts
-            if (lives === 0) {
-                gamesLost++;
-                alert("No more guesses remaining. You lost this game. The word was " + selectWord + ". Click 'Okay' to play again.");
-                document.getElementById("gamesLost").innerHTML = gamesLost.toString();  
-            };
-        
-        // If player guessed the word, player wins game and game restarts
-            if (document.getElementById("blankSpaces").innerHTML.indexOf("_") === -1) { 
-                gamesWon++;
-                alert("You won. Click 'Okay' to play again.")
-                document.getElementById("gamesWon").innerHTML = gamesWon.toString();
-            };
+
+            gameStatus();
+
         };
-
+    
     // playerProgress function to search letter splitWord array and replace it with guessed letter or deduct a life if not fouind    
-
         function playerProgress (letter) {
             for (i = 0; i < splitWord.length; i++) {
                 if (splitWord[i] === letter) {
@@ -132,6 +113,23 @@ window.onload = function () {
             };
             
         };
-}
 
-// Missing ... how to restard game and keep track of losses and wins 
+        function gameStatus () {
+                if (lives === 0) {
+                    gamesLost++;
+                    alert("No more guesses remaining. You lost this game. The word is " + selectWord + ". Click 'Okay' to play again.");
+                    hangmanGameSetup();
+                };
+
+                if (document.getElementById("blankSpaces").innerHTML.indexOf("_") === -1) { 
+                    gamesWon++;
+                    alert("You won. The word is " + selectWord + ". Click 'Okay' to play again.")
+                    document.getElementById("gamesWon").innerHTML = gamesWon.toString();
+                    hangmanGameSetup();
+                };
+        };
+
+};
+
+hangmanGameSetup();
+
