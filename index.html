@@ -10,62 +10,51 @@
 
 </head>
 <body>
+
     <div class="wrapper">
-        
-        <!-- Heading, NO script needed. -->
+    
         <h1>Hangman Game</h1>
         <hr>
         
-        <!-- Instructions, NO script needed. -->
         <p>Instructions Here</p>
         <hr>
 
-        <!-- To start a new game, SCRIPT NEEDED -->
-        <div id="newGame">
+        <div id="gameOptions">
             <button onclick=location=URL>New Game</button>
+            <button type="button" onclick="window.open('', '_self', ''); window.close();">Close Game</button>
         </div>
         <hr>
 
-        <!-- To start a cancel game, SCRIPT NEEDED -->
-        <div id="endGame">
-                <button type="button" onclick="window.open('', '_self', ''); window.close();">Close Game</button>
-        </div>
+        <h2>Category: </h2>
+        <div id="myCategory"></div>
         <hr>
         
-        <div id="myCategory">
-                <!-- Display the "Category" of the word, SCRIPT NEEDED -->
-        </div>
-        <hr>
-        
-        <div id="myLives">
-                <!-- Display the "lives" left, SCRIPT NEEDED -->
-        </div>
+        <h2>Guesses Remaining: </h2>
+        <div id="myLives"></div>
         <hr>
 
-        <div id="blankSpaces">
-                <!-- Display the "blank spaces" of the word, SCRIPT NEEDED -->
-        </div>
-        <hr>
-        <div id="myButtons">
-            <!-- Display the "buttons" of the alphabet, SCRIPT NEEDED -->
-        </div>
+        <div id="blankSpaces"></div>
         <hr>
 
-        <div id="lettersGuessed">
-            <!-- Display the "buttons" of the alphabet, SCRIPT NEEDED -->
-        </div>
+        <h2>Letters Guessed: </h2>
+        <div id="lettersGuessed"></div>
         <hr>
 
-        <div id="lettersRemaining">
-                <!-- Display the "buttons" of the alphabet, SCRIPT NEEDED -->
-            </div>
-            <hr>
+        <h2>Letters Remaining: </h2>
+        <div id="lettersRemaining"></div>
+        <hr>
 
-   
-       
+        <h2>Games Won: </h2>
+        <div id="gamesWon"></div>
+        <hr>
+
+        <h2>Games Lost: </h2>
+        <div id="gamesLost"></div>
+        <hr>
+
     </div>
 
-    <script src="assets/javascript/game.js"></script>
+    <script type="text/javascript" src="assets\javascript\game.js"></script>
 
 </body>
 </html>
